@@ -5,7 +5,6 @@
 void test_trie_init (void)
 {
     trie_node_t *trie;
-    trie = trie_init();
+    trie = trie_init ();
     ENSURE (NULL != trie);
-    return;
 }

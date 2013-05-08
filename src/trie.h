@@ -7,4 +7,4 @@ struct trie_node_s {
     trie_node_t *children;
 };
 
-trie_node_t* trie_init();
+trie_node_t* trie_init (void);
