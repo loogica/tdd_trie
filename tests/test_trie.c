@@ -13,3 +13,8 @@ void test_trie_init (void)
     for (int i = 0; i < ALPHABET_SIZE; i++)
         ENSURE (trie->children[i] == NULL);
 }
+
+void test_trie_find_value (void)
+{
+    ENSURE (1 == 2);
+}
