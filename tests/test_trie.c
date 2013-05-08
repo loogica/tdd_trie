@@ -56,3 +56,22 @@ void test_trie_add_word (void)
     /* make sure 'a' value insn't present in trie root children */
     ENSURE (0 == _find_value (trie->children, 'a'));
 }
+
+void test_trie_has_word (void)
+{
+    trie_node_t *trie;
+    trie = trie_node_init ();
+
+    trie_add_word (trie, "d");
+    trie_add_word (trie, "da");
+    trie_add_word (trie, "asdf");
+    trie_add_word (trie, "lkhkl");
+
+    ENSURE (1 == trie_has_node (trie, "d"));
+    ENSURE (1 == trie_has_node (trie, "da"));
+    ENSURE (1 == trie_has_node (trie, "asdf"));
+    ENSURE (1 == trie_has_node (trie, "lkhkl"));
+    ENSURE (0 == trie_has_node (trie, "e"));
+    ENSURE (0 == trie_has_node (trie, "dap"));
+    ENSURE (0 == trie_has_node (trie, "asdfa"));
+}
