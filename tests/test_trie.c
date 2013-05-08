@@ -32,5 +32,10 @@ void test_trie_find_value (void)
 
 void test_trie_add_word (void)
 {
-    ENSURE (1 == 0);
+    trie_node_t *trie;
+    trie = trie_init ();
+
+    trie_add_word (trie, "d");
+
+    ENSURE (1 == _find_value (trie->children, 'd'));
 }
