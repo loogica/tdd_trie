@@ -51,3 +51,8 @@ int trie_add_word (trie_node_t *trie, const char* word)
     }
     return 1;
 }
+
+int trie_has_node (trie_node_t *trie, const char* word)
+{
+
+}

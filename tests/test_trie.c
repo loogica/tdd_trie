@@ -56,3 +56,8 @@ void test_trie_add_word (void)
     /* make sure 'a' value insn't present in trie root children */
     ENSURE (0 == _find_value (trie->children, 'a'));
 }
+
+void test_trie_has_word (void)
+{
+    ENSURE (1 == 2);
+}
