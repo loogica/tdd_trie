@@ -59,5 +59,13 @@ void test_trie_add_word (void)
 
 void test_trie_has_word (void)
 {
-    ENSURE (1 == 2);
+    trie_node_t *trie;
+    trie = trie_node_init ();
+
+    trie_add_word (trie, "d");
+    trie_add_word (trie, "da");
+
+    ENSURE (1 == trie_has_node (trie, "d"));
+    ENSURE (1 == trie_has_node (trie, "da"));
+
 }
