@@ -2,10 +2,10 @@
 #include "thc.h"
 #include "../src/trie.h"
 
-void test_trie_init (void)
+void test_trie_node_init (void)
 {
     trie_node_t *trie;
-    trie = trie_init ();
+    trie = trie_node_init ();
     ENSURE (NULL != trie);
     ENSURE (0 == trie->value);
     ENSURE (NULL != trie->children);
@@ -33,7 +33,7 @@ void test_trie_find_value (void)
 void test_trie_add_word (void)
 {
     trie_node_t *trie;
-    trie = trie_init ();
+    trie = trie_node_init ();
 
     ENSURE (1 == trie_add_word (trie, "d"));
     ENSURE (1 == _find_value (trie->children, 'd'));
