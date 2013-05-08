@@ -2,10 +2,10 @@
 #include "thc.h"
 #include "../src/trie.h"
 
-void test_trie_init (void)
+void test_trie_node_init (void)
 {
     trie_node_t *trie;
-    trie = trie_init ();
+    trie = trie_node_init ();
     ENSURE (NULL != trie);
     ENSURE (0 == trie->value);
     ENSURE (NULL != trie->children);
@@ -24,16 +24,16 @@ void test_trie_find_value (void)
         children[i]->value = *(input++);
     }
 
-    ENSURE (0 == _find_value(children, 't'));
-    ENSURE (0 == _find_value(children, 'b'));
-    ENSURE (1 == _find_value(children, 'z'));
-    ENSURE (1 == _find_value(children, 'a'));
+    ENSURE (0 == _find_value (children, 't'));
+    ENSURE (0 == _find_value (children, 'b'));
+    ENSURE (1 == _find_value (children, 'z'));
+    ENSURE (1 == _find_value (children, 'a'));
 }
 
 void test_trie_add_word (void)
 {
     trie_node_t *trie;
-    trie = trie_init ();
+    trie = trie_node_init ();
 
     ENSURE (1 == trie_add_word (trie, "d"));
     ENSURE (1 == _find_value (trie->children, 'd'));
@@ -44,4 +44,12 @@ void test_trie_add_word (void)
     ENSURE (0 == _find_value (trie->children, 'b'));
     ENSURE (0 == _find_value (trie->children, 'c'));
     ENSURE (0 == _find_value (trie->children, 'e'));
+
+    /* FIXME - leaking */
+    trie = trie_node_init ();
+
+    ENSURE (1 == trie_add_word (trie, "da"));
+
+    /* make sure 'a' value insn't present in trie root children */
+    ENSURE (0 == _find_value (trie->children, 'a'));
 }
