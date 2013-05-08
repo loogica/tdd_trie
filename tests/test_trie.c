@@ -24,10 +24,10 @@ void test_trie_find_value (void)
         children[i]->value = *(input++);
     }
 
-    ENSURE (0 == _find_value(children, 't'));
-    ENSURE (0 == _find_value(children, 'b'));
-    ENSURE (1 == _find_value(children, 'z'));
-    ENSURE (1 == _find_value(children, 'a'));
+    ENSURE (0 == _find_value (children, 't'));
+    ENSURE (0 == _find_value (children, 'b'));
+    ENSURE (1 == _find_value (children, 'z'));
+    ENSURE (1 == _find_value (children, 'a'));
 }
 
 void test_trie_add_word (void)
