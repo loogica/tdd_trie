@@ -29,3 +29,8 @@ void test_trie_find_value (void)
     ENSURE (1 == _find_value(children, 'z'));
     ENSURE (1 == _find_value(children, 'a'));
 }
+
+void test_trie_add_word (void)
+{
+    ENSURE (1 == 0);
+}
