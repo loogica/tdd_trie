@@ -44,4 +44,6 @@ void test_trie_add_word (void)
     ENSURE (0 == _find_value (trie->children, 'b'));
     ENSURE (0 == _find_value (trie->children, 'c'));
     ENSURE (0 == _find_value (trie->children, 'e'));
+
+    ENSURE (1 == trie_add_word (trie, "da"));
 }
