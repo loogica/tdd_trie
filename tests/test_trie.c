@@ -16,5 +16,13 @@ void test_trie_init (void)
 
 void test_trie_find_value (void)
 {
-    ENSURE (1 == 2);
+    trie_node_t **children = malloc (sizeof (trie_node_t) * ALPHABET_SIZE);
+    const char *input = "abcdefghijklmnopqrssuvxwyz";
+
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+        children[i] = malloc (sizeof (trie_node_t));
+        children[i]->value = *(input++);
+    }
+
+    ENSURE (0 == _find_value(children, "t"));
 }

@@ -21,5 +21,5 @@ trie_node_t* trie_init ()
 
 int _find_value (trie_node_t **children, const char value)
 {
-
+    return 0;
 }
