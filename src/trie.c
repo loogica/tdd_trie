@@ -18,3 +18,12 @@ trie_node_t* trie_init ()
     trie->value = 0;
     return trie;
 }
+
+int _find_value (trie_node_t **children, const char value)
+{
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+        if (children[i]->value == value)
+            return 1;
+    }
+    return 0;
+}
