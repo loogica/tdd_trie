@@ -42,6 +42,7 @@ int trie_add_word (trie_node_t *trie, const char* word)
         } else {
             trie->children[NORMALIZE_(*(word))] = trie_node_init ();
             trie->children[NORMALIZE_(*(word))]->value = *(word);
+            trie = trie->children[NORMALIZE_(*word)];
         }
         *(word++);
     }
