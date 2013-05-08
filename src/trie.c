@@ -24,6 +24,9 @@ int _find_value (trie_node_t **children, const char value)
     if (children == NULL)
         return 0;
 
+    if (!VALID_(value))
+        return -1;
+
     for (int i = 0; i < ALPHABET_SIZE; i++) {
         if (children[i] != NULL) {
             if (children[i]->value == value)

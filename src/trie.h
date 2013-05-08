@@ -1,5 +1,6 @@
 #define ALPHABET_SIZE 26
 #define NORMALIZE_(l) (l - 97)
+#define VALID_(l) (l > 96 && l < 123)
 
 typedef struct trie_node_s trie_node_t;
 
