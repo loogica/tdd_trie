@@ -35,5 +35,18 @@ int _find_value (trie_node_t **children, const char value)
 
 int trie_add_word (trie_node_t *trie, const char* word)
 {
-    return 0;
+    trie_node_t *node;
+    while (*word) {
+        int found = _find_value (trie->children, *(word));
+        if (found) {
+            trie = trie->children[NORMALIZE_(*(word))];
+        } else {
+            trie_node_t *new_node;
+            new_node = malloc (sizeof (trie_node_t));
+            new_node->value = *(word);
+            trie->children[NORMALIZE_(*(word))] = new_node;
+        }
+        *(word++);
+    }
+    return 1;
 }

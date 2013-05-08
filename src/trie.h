@@ -1,4 +1,5 @@
 #define ALPHABET_SIZE 26
+#define NORMALIZE_(l) (l - 97)
 
 typedef struct trie_node_s trie_node_t;
 
