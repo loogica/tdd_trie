@@ -9,4 +9,7 @@ void test_trie_init (void)
     ENSURE (NULL != trie);
     ENSURE (0 == trie->value);
     ENSURE (NULL != trie->children);
+
+    for (int i = 0; i < ALPHABET_SIZE; i++)
+        ENSURE (trie->children[i] == NULL);
 }
