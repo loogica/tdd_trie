@@ -4,5 +4,5 @@
 int main (int argc, char *argv[])
 {
     thc_addtest (test_trie_init);
-    return thc_run (THC_VERBOSE | THC_NOFORK);
+    return thc_run (THC_VERBOSE);
 }
