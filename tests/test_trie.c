@@ -45,5 +45,11 @@ void test_trie_add_word (void)
     ENSURE (0 == _find_value (trie->children, 'c'));
     ENSURE (0 == _find_value (trie->children, 'e'));
 
+    /* FIXME - leaking */
+    trie = trie_node_init ();
+
     ENSURE (1 == trie_add_word (trie, "da"));
+
+    /* make sure 'a' value insn't present in trie root children */
+    ENSURE (0 == _find_value (trie->children, 'a'));
 }
