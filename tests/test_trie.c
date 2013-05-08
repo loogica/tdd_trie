@@ -29,3 +29,19 @@ void test_trie_find_value (void)
     ENSURE (1 == _find_value(children, 'z'));
     ENSURE (1 == _find_value(children, 'a'));
 }
+
+void test_trie_add_word (void)
+{
+    trie_node_t *trie;
+    trie = trie_init ();
+
+    ENSURE (1 == trie_add_word (trie, "d"));
+    ENSURE (1 == _find_value (trie->children, 'd'));
+    ENSURE (1 == trie_add_word (trie, "z"));
+    ENSURE (1 == _find_value (trie->children, 'z'));
+    ENSURE (1 == _find_value (trie->children, 'z'));
+    ENSURE (0 == _find_value (trie->children, 'a'));
+    ENSURE (0 == _find_value (trie->children, 'b'));
+    ENSURE (0 == _find_value (trie->children, 'c'));
+    ENSURE (0 == _find_value (trie->children, 'e'));
+}
