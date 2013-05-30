@@ -39,9 +39,9 @@ int _find_value (trie_node_t **children, const char value)
 int trie_add_word (trie_node_t *trie, const char* word)
 {
     while (*word) {
-        int found = _find_value (trie->children, *(word));
+        trie_node_t *found = trie->children[NORMALIZE_(*(word))];
         if (found) {
-            trie = trie->children[NORMALIZE_(*(word))];
+            trie = found;
         } else {
             trie->children[NORMALIZE_(*(word))] = trie_node_init ();
             trie->children[NORMALIZE_(*(word))]->value = *(word);
@@ -55,7 +55,7 @@ int trie_add_word (trie_node_t *trie, const char* word)
 int trie_has_node (trie_node_t *trie, const char* word)
 {
     while (*word) {
-        int found = _find_value (trie->children, *(word));
+        trie_node_t *found = trie->children[NORMALIZE_(*(word))];
         if (found) {
             trie = trie->children[NORMALIZE_(*(word))];
         } else {
