@@ -7,7 +7,7 @@ trie_node_t* trie_node_init ()
     trie = malloc (sizeof (trie_node_t));
     if (trie == NULL)
         return NULL;
-    trie->children = malloc (sizeof (trie_node_t) * ALPHABET_SIZE);
+    trie->children = malloc (sizeof (trie_node_t*) * ALPHABET_SIZE);
     if (trie->children == NULL) {
         free (trie);
         return NULL;
