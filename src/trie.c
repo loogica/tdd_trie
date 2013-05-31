@@ -19,27 +19,21 @@ trie_node_t* trie_node_init ()
     return trie;
 }
 
-int _find_value (trie_node_t **children, const char value)
+trie_node_t* _find_value (trie_node_t **children, const char value)
 {
-    if (children == NULL)
-        return 0;
+    if (children == NULL || !VALID_(value))
+        return NULL;
 
-    if (!VALID_(value))
-        return -1;
+    if (children[NORMALIZE_(value)] != NULL)
+        return children[NORMALIZE_(value)];
 
-    for (int i = 0; i < ALPHABET_SIZE; i++) {
-        if (children[i] != NULL) {
-            if (children[i]->value == value)
-                return 1;
-        }
-    }
-    return 0;
+    return NULL;
 }
 
 int trie_add_word (trie_node_t *trie, const char* word)
 {
     while (*word) {
-        trie_node_t *found = trie->children[NORMALIZE_(*(word))];
+        trie_node_t *found = _find_value(trie->children, *(word));
         if (found) {
             trie = found;
         } else {
@@ -55,9 +49,9 @@ int trie_add_word (trie_node_t *trie, const char* word)
 int trie_has_node (trie_node_t *trie, const char* word)
 {
     while (*word) {
-        trie_node_t *found = trie->children[NORMALIZE_(*(word))];
+        trie_node_t *found = _find_value(trie->children, *(word));
         if (found) {
-            trie = trie->children[NORMALIZE_(*(word))];
+            trie = found;
         } else {
             return 0;
         }

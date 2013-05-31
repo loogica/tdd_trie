@@ -17,20 +17,20 @@ void test_trie_node_init (void)
 void test_trie_find_value (void)
 {
     trie_node_t **children = malloc (sizeof (trie_node_t) * ALPHABET_SIZE);
-    const char *input = "aacdefghijklmnopqrssuvxwyz";
+    const char *input = "abcdefghijklmnopqrstuvxwyz";
 
     for (int i = 0; i < ALPHABET_SIZE; i++) {
         children[i] = malloc (sizeof (trie_node_t));
         children[i]->value = *(input++);
     }
 
-    ENSURE (0 == _find_value (children, 't'));
-    ENSURE (0 == _find_value (children, 'b'));
-    ENSURE (1 == _find_value (children, 'z'));
-    ENSURE (1 == _find_value (children, 'a'));
-    ENSURE (-1 == _find_value (children, ')'));
-    ENSURE (-1 == _find_value (children, ']'));
-    ENSURE (-1 == _find_value (children, '  '));
+    ENSURE ('t' == _find_value (children, 't')->value);
+    ENSURE ('b' == _find_value (children, 'b')->value);
+    ENSURE ('z' == _find_value (children, 'z')->value);
+    ENSURE ('a' == _find_value (children, 'a')->value);
+    ENSURE (NULL == _find_value (children, ')'));
+    ENSURE (NULL == _find_value (children, ']'));
+    ENSURE (NULL == _find_value (children, '  '));
 }
 
 void test_trie_add_word (void)
@@ -39,14 +39,9 @@ void test_trie_add_word (void)
     trie = trie_node_init ();
 
     ENSURE (1 == trie_add_word (trie, "d"));
-    ENSURE (1 == _find_value (trie->children, 'd'));
+    ENSURE ('d' == _find_value (trie->children, 'd')->value);
     ENSURE (1 == trie_add_word (trie, "z"));
-    ENSURE (1 == _find_value (trie->children, 'z'));
-    ENSURE (1 == _find_value (trie->children, 'z'));
-    ENSURE (0 == _find_value (trie->children, 'a'));
-    ENSURE (0 == _find_value (trie->children, 'b'));
-    ENSURE (0 == _find_value (trie->children, 'c'));
-    ENSURE (0 == _find_value (trie->children, 'e'));
+    ENSURE ('z' == _find_value (trie->children, 'z')->value);
 
     /* FIXME - leaking */
     trie = trie_node_init ();
@@ -54,7 +49,7 @@ void test_trie_add_word (void)
     ENSURE (1 == trie_add_word (trie, "da"));
 
     /* make sure 'a' value insn't present in trie root children */
-    ENSURE (0 == _find_value (trie->children, 'a'));
+    ENSURE (NULL == _find_value (trie->children, 'a'));
 }
 
 void test_trie_has_word (void)
